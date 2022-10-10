@@ -1,33 +1,26 @@
 {
   "name": "whitelist-dapp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oluwaferanmiadetunji/whitelist-dapp.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oluwaferanmiadetunji/whitelist-dapp/issues"
-  },
-  "homepage": "https://github.com/oluwaferanmiadetunji/whitelist-dapp#readme",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.11.2"
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "^12.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "ethers": "^5.7.1",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "web3modal": "^1.9.9"
+  },
+  "devDependencies": {
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "typescript": "4.8.4"
   }
 }

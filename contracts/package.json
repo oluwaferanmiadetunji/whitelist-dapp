@@ -1,0 +1,31 @@
+{
+  "name": "whitelist-dapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run --network goerli scripts/deploy.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oluwaferanmiadetunji/whitelist-dapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oluwaferanmiadetunji/whitelist-dapp/issues"
+  },
+  "homepage": "https://github.com/oluwaferanmiadetunji/whitelist-dapp#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.11.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "env-var": "^7.3.0"
+  }
+}
