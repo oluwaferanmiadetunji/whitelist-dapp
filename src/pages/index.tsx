@@ -6,6 +6,8 @@ import Web3Modal from 'web3modal'
 import { providers, Contract } from 'ethers'
 import { useEffect, useRef, useState } from 'react'
 import { WHITELIST_CONTRACT_ADDRESS, abi } from 'utils/constants'
+import LoadingButton from '@mui/lab/LoadingButton'
+import Button from '@mui/material/Button'
 
 const Home: NextPage = () => {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -18,19 +20,6 @@ const Home: NextPage = () => {
   const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0)
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef: any = useRef()
-
-  /**
-   * Returns a Provider or Signer object representing the Ethereum RPC with or without the
-   * signing capabilities of metamask attached
-   *
-   * A `Provider` is needed to interact with the blockchain - reading transactions, reading balances, reading state, etc.
-   *
-   * A `Signer` is a special type of Provider used in case a `write` transaction needs to be made to the blockchain, which involves the connected account
-   * needing to make a digital signature to authorize the transaction being sent. Metamask exposes a Signer API to allow your website to
-   * request signatures from the user using Signer functions.
-   *
-   * @param {*} needSigner - True if you need the signer, default false otherwise
-   */
 
   const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
@@ -52,9 +41,6 @@ const Home: NextPage = () => {
     return web3Provider
   }
 
-  /**
-   * addAddressToWhitelist: Adds the current connected address to the whitelist
-   */
   const addAddressToWhitelist = async () => {
     try {
       // We need a Signer here since this is a 'write' transaction.
@@ -80,9 +66,6 @@ const Home: NextPage = () => {
     }
   }
 
-  /**
-   * getNumberOfWhitelisted:  gets the number of whitelisted addresses
-   */
   const getNumberOfWhitelisted = async () => {
     try {
       // Get the provider from web3Modal, which in our case is MetaMask
@@ -103,9 +86,6 @@ const Home: NextPage = () => {
     }
   }
 
-  /**
-   * checkIfAddressInWhitelist: Checks if the address is in whitelist
-   */
   const checkIfAddressInWhitelist = async () => {
     try {
       // We will need the signer later to get the user's address
@@ -130,9 +110,6 @@ const Home: NextPage = () => {
     }
   }
 
-  /*
-    connectWallet: Connects the MetaMask wallet
-  */
   const connectWallet = async () => {
     try {
       // Get the provider from web3Modal, which in our case is MetaMask
@@ -147,9 +124,6 @@ const Home: NextPage = () => {
     }
   }
 
-  /*
-    renderButton: Returns a button based on the state of the dapp
-  */
   const renderButton = () => {
     if (walletConnected) {
       if (joinedWhitelist) {
@@ -158,20 +132,23 @@ const Home: NextPage = () => {
             Thanks for joining the Whitelist!
           </div>
         )
-      } else if (loading) {
-        return <button className={styles.button}>Loading...</button>
       } else {
         return (
-          <button onClick={addAddressToWhitelist} className={styles.button}>
+          <LoadingButton
+            loading={loading}
+            onClick={addAddressToWhitelist}
+            variant="contained"
+            sx={{ marginTop: '10px' }}
+          >
             Join the Whitelist
-          </button>
+          </LoadingButton>
         )
       }
     } else {
       return (
-        <button onClick={connectWallet} className={styles.button}>
+        <Button variant="contained" onClick={connectWallet}>
           Connect your wallet
-        </button>
+        </Button>
       )
     }
   }
@@ -201,6 +178,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Whitelist-Dapp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <div className={styles.main}>
         <div>
           <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
